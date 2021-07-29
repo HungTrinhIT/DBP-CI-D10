@@ -1,0 +1,20 @@
+body {
+    height: 100vh;
+}
+
+.grid-item {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    border: 1px solid #000000;
+    background-color: red;
+}
+
+.grid-container {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+/* Flex ,grid => Dàn layout */
