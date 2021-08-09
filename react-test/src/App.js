@@ -1,10 +1,11 @@
 import "./App.css";
+import React, { Component } from "react";
 import TodoList from "./components/TodoList";
-import Car from "./DemoState/Car";
-import DemoState from "./DemoState/DemoState";
 
-function App() {
-  return <div className="App">{/* <TodoList /> */}</div>;
+class App extends Component {
+  render() {
+    return <div className="App">{/* <TodoList /> */}</div>;
+  }
 }
 
 export default App;
