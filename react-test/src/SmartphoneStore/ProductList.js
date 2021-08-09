@@ -8,7 +8,7 @@ export default class ProductList extends Component {
       <div className="row">
         {products.map((productItem, index) => {
           return (
-            <div className="col-4">
+            <div className="col-12 col-sm-6 col-lg-4">
               <ProductItem product={productItem} key={index} />
             </div>
           );
