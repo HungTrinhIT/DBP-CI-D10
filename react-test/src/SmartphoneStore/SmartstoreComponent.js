@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ProductDetail from "./ProductDetail";
 import ProductList from "./ProductList";
 
+import Cart from "./Cart";
 export default class SmartphoneStore extends Component {
   constructor(props) {
     super(props);
@@ -68,6 +69,7 @@ export default class SmartphoneStore extends Component {
     };
   }
 
+  // Xem chi tiết sản phẩm
   onSelectedProduct = (id) => {
     const products = this.state.products;
     const idx = products.findIndex((product) => product.id === id);
@@ -79,67 +81,77 @@ export default class SmartphoneStore extends Component {
     }
   };
 
+  // Thêm vào giỏ hàng
+  onAddToCart = (product) => {
+    const idxItemInCart = this.state.cart.findIndex(
+      (item) => item.id === product.id
+    );
+
+    // Nếu cái sản phẩm chưa tồn tại trong giỏ hàng
+    // Cập nhật lại amount = 1 => push vào giỏ hàng => cập nhật lại state
+    if (idxItemInCart === -1) {
+      product.amount = 1;
+      this.setState({
+        cart: [...this.state.cart, product],
+      });
+    } else {
+      // Lúc này sản phẩm đã tồn tại trong giỏ hàng
+      const currentCart = this.state.cart;
+      currentCart[idxItemInCart].amount += 1;
+      this.setState({
+        cart: currentCart,
+      });
+    }
+  };
+
+  // Sự kiện tăng số lượng cart item
+  onPlusAmountCartItem = (id) => {
+    const currentCart = this.state.cart;
+    const idxItemInCart = currentCart.findIndex((item) => item.id === id);
+
+    currentCart[idxItemInCart].amount += 1;
+    this.setState({
+      cart: currentCart,
+    });
+  };
+
+  // Sự kiện tăng số lượng cart item
+  onMinusAmountCartItem = (id) => {
+    const currentCart = this.state.cart;
+    const idxItemInCart = currentCart.findIndex((item) => item.id === id);
+    currentCart[idxItemInCart].amount -= 1;
+    this.setState({
+      cart: currentCart,
+    });
+  };
   render() {
-    const { products, selectedProduct } = this.state;
+    const { products, selectedProduct, cart } = this.state;
     return (
       <div className="container pt-5">
-        <h1 class="text-primary text-center">Thế giới di động</h1>
-        <ProductList
-          products={products}
-          onSelectedProduct={this.onSelectedProduct}
-        />
-        <ProductDetail productDetail={selectedProduct} />
-
-        {/* Button to show Modal */}
-        <div>
-          {/* Button trigger modal */}
-          <button
+        <h1 class="text-primary text-center mb-5">Thế giới di động</h1>
+        <div className="d-flex justify-content-end">
+          <a
             type="button"
-            className="btn btn-primary"
+            className="text-success"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
-            Launch demo modal
-          </button>
-          {/* Modal */}
-
-          <div
-            className="modal fade"
-            id="exampleModal"
-            tabIndex={-1}
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLabel">
-                    Modal title
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  />
-                </div>
-                <div className="modal-body">...</div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" className="btn btn-primary">
-                    Save changes
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+            Giỏ hàng ({cart.length})
+          </a>
         </div>
+
+        <ProductList
+          products={products}
+          onSelectedProduct={this.onSelectedProduct}
+          onAddToCart={this.onAddToCart}
+          onAddToCart={this.onAddToCart}
+        />
+        <ProductDetail productDetail={selectedProduct} />
+        <Cart
+          cart={cart}
+          onPlusAmountCartItem={this.onPlusAmountCartItem}
+          onMinusAmountCartItem={this.onMinusAmountCartItem}
+        />
       </div>
     );
   }

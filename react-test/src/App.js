@@ -1,8 +1,8 @@
 import "./App.css";
 import React, { Component } from "react";
 // import TodoList from "./components/TodoList";
-import DemoState from "./DemoSatete/DemoState";
-import Car from "./Car/Car";
+// import DemoState from "./DemoSatete/DemoState";
+// import Car from "./Car/Car";
 import SmartphoneStore from "./SmartphoneStore/SmartstoreComponent";
 
 class App extends Component {
