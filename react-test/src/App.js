@@ -4,7 +4,8 @@ import React, { Component } from "react";
 // import DemoState from "./DemoSatete/DemoState";
 // import Car from "./Car/Car";
 // import SmartphoneStore from "./SmartphoneStore/SmartstoreComponent";
-import DemoForm from "./DemoForm/DemoForm";
+// import DemoForm from "./DemoForm/DemoForm";
+import StudentManagement from "./StudentManagement/StudentManagement";
 
 class App extends Component {
   render() {
@@ -14,7 +15,8 @@ class App extends Component {
         {/* <DemoState /> */}
         {/* <Car /> */}
         {/* <SmartphoneStore /> */}
-        <DemoForm/>
+        {/* <DemoForm/> */}
+        <StudentManagement />
       </div>
     );
   }
