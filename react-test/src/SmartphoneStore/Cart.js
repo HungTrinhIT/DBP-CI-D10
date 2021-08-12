@@ -2,7 +2,11 @@ import React, { Component } from "react";
 
 export default class Cart extends Component {
   render() {
-    const { cart, onPlusAmountCartItem, onMinusAmountCartItem } = this.props;
+    const { cart, onHandleAmountCartItemChange } = this.props;
+    let totalPrice = 0;
+    for (const cartItem of cart) {
+      totalPrice += cartItem.amount * cartItem.price;
+    }
     return (
       <div>
         {/* Modal */}
@@ -36,6 +40,7 @@ export default class Cart extends Component {
                       <th>Số lượng</th>
                       <th>Đơn giá</th>
                       <th>Thành tiền</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -59,7 +64,9 @@ export default class Cart extends Component {
                             <td>
                               <button
                                 className="btn btn-primary"
-                                onClick={() => onMinusAmountCartItem(id)}
+                                onClick={() =>
+                                  onHandleAmountCartItemChange(id, -1)
+                                }
                                 disabled={amount <= 1 ? true : false}
                               >
                                 -
@@ -67,19 +74,29 @@ export default class Cart extends Component {
                               <span className="mx-2">{amount}</span>
                               <button
                                 className="btn btn-primary"
-                                onClick={() => onPlusAmountCartItem(id)}
+                                onClick={() =>
+                                  onHandleAmountCartItemChange(id, +1)
+                                }
                               >
                                 +
                               </button>
                             </td>
                             <td>{price}</td>
                             <td>{price * amount}</td>
+                            <td>
+                              <button className="btn btn-danger">Xóa</button>
+                            </td>
                           </tr>
                         );
                       })
                     ) : (
                       <p>Không có sản phẩm, vui lòng chọn sản phẩm nhé</p>
                     )}
+                    {cart.length > 0 ? (
+                      <tr>
+                        <td>{totalPrice}</td>
+                      </tr>
+                    ) : null}
                   </tbody>
                 </table>
               </div>

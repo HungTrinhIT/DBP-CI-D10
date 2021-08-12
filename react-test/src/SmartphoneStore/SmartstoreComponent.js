@@ -105,21 +105,31 @@ export default class SmartphoneStore extends Component {
   };
 
   // Sự kiện tăng số lượng cart item
-  onPlusAmountCartItem = (id) => {
-    const currentCart = this.state.cart;
-    const idxItemInCart = currentCart.findIndex((item) => item.id === id);
+  // onPlusAmountCartItem = (id, value) => {
+  //   const currentCart = this.state.cart;
+  //   const idxItemInCart = currentCart.findIndex((item) => item.id === id);
 
-    currentCart[idxItemInCart].amount += 1;
-    this.setState({
-      cart: currentCart,
-    });
-  };
+  //   currentCart[idxItemInCart].amount += value;
+  //   this.setState({
+  //     cart: currentCart,
+  //   });
+  // };
 
   // Sự kiện tăng số lượng cart item
-  onMinusAmountCartItem = (id) => {
+  // onMinusAmountCartItem = (id) => {
+  //   const currentCart = this.state.cart;
+  //   const idxItemInCart = currentCart.findIndex((item) => item.id === id);
+  //   currentCart[idxItemInCart].amount -= 1;
+  //   this.setState({
+  //     cart: currentCart,
+  //   });
+  // };
+
+  // Xử lý tăng/giảm cart item
+  onHandleAmountCartItemChange = (id, value) => {
     const currentCart = this.state.cart;
     const idxItemInCart = currentCart.findIndex((item) => item.id === id);
-    currentCart[idxItemInCart].amount -= 1;
+    currentCart[idxItemInCart].amount += value;
     this.setState({
       cart: currentCart,
     });
@@ -149,8 +159,9 @@ export default class SmartphoneStore extends Component {
         <ProductDetail productDetail={selectedProduct} />
         <Cart
           cart={cart}
-          onPlusAmountCartItem={this.onPlusAmountCartItem}
-          onMinusAmountCartItem={this.onMinusAmountCartItem}
+          // onPlusAmountCartItem={this.onPlusAmountCartItem}
+          // onMinusAmountCartItem={this.onMinusAmountCartItem}
+          onHandleAmountCartItemChange={this.onHandleAmountCartItemChange}
         />
       </div>
     );

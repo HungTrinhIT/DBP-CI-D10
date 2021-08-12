@@ -3,7 +3,8 @@ import React, { Component } from "react";
 // import TodoList from "./components/TodoList";
 // import DemoState from "./DemoSatete/DemoState";
 // import Car from "./Car/Car";
-import SmartphoneStore from "./SmartphoneStore/SmartstoreComponent";
+// import SmartphoneStore from "./SmartphoneStore/SmartstoreComponent";
+import DemoForm from "./DemoForm/DemoForm";
 
 class App extends Component {
   render() {
@@ -12,7 +13,8 @@ class App extends Component {
         {/* <TodoList /> */}
         {/* <DemoState /> */}
         {/* <Car /> */}
-        <SmartphoneStore />
+        {/* <SmartphoneStore /> */}
+        <DemoForm/>
       </div>
     );
   }
