@@ -3,7 +3,7 @@ import ProductItem from "./ProductItem";
 
 export default class ProductList extends Component {
   render() {
-    const { products, onSelectedProduct } = this.props;
+    const { products, onSelectedProduct ,onAddToCart} = this.props;
     return (
       <div className="row">
         {products.map((productItem, index) => {
@@ -12,6 +12,7 @@ export default class ProductList extends Component {
               <ProductItem
                 onSelectedProduct={onSelectedProduct}
                 product={productItem}
+                onAddToCart={onAddToCart}
                 key={index}
               />
             </div>

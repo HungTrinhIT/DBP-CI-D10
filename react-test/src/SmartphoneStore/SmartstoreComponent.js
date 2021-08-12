@@ -1,7 +1,11 @@
 import React, { Component } from "react";
+import Modal from "./Modal";
 import ProductDetail from "./ProductDetail";
 import ProductList from "./ProductList";
 
+const findProductByID = (arr, id) => {
+  return arr ? arr.findIndex((ele) => ele.id === id) : -1;
+};
 export default class SmartphoneStore extends Component {
   constructor(props) {
     super(props);
@@ -68,6 +72,7 @@ export default class SmartphoneStore extends Component {
     };
   }
 
+  // Xem chi tiết sản phẩm
   onSelectedProduct = (id) => {
     const products = this.state.products;
     const idx = products.findIndex((product) => product.id === id);
@@ -79,67 +84,95 @@ export default class SmartphoneStore extends Component {
     }
   };
 
+  // Thêm sản phẩm vào giỏ hàng
+  onAddToCart = (addedItem) => {
+    const { cart, products } = this.state;
+
+    // Tìm xem item đã tồn tại trong cart hay chưa
+    const idxItemInCart = this.state.cart.findIndex(
+      (cartItem) => cartItem.id === addedItem.id
+    );
+
+    // Trường hợp chưa tồn tại trong giỏ hàng
+    if (idxItemInCart === -1) {
+      addedItem.amount = 1;
+      this.setState({
+        cart: [...cart, addedItem],
+      });
+    } else {
+      cart[idxItemInCart].amount += 1;
+      this.setState({
+        cart: cart,
+      });
+    }
+  };
+
+  // Improve chức năng tăng giảm số lượng
+  onChangeAmountCartItem = (id, value) => {
+    const { cart } = this.state;
+    const idxItemInCart = cart.findIndex((item) => item.id === id);
+
+    cart[idxItemInCart].amount += value;
+    this.setState({
+      cart: cart,
+    });
+  };
+
+  // Tăng số lượng sản phẩm của cart item
+  // onPlusCartItem = (id) => {
+  //   const { cart } = this.state;
+  //   const idxItemInCart = cart.findIndex((item) => item.id === id);
+
+  //   cart[idxItemInCart].amount += 1;
+  //   this.setState({
+  //     cart: cart,
+  //   });
+  // };
+
+  // Giảm số lượng sản phẩm của cart item
+  onMinusCartItem = (id) => {
+    const { cart } = this.state;
+    const idxItemInCart = cart.findIndex((item) => item.id === id);
+
+    cart[idxItemInCart].amount -= 1;
+    this.setState({
+      cart: cart,
+    });
+  };
+
   render() {
-    const { products, selectedProduct } = this.state;
+    const { products, selectedProduct, cart } = this.state;
     return (
       <div className="container pt-5">
-        <h1 class="text-primary text-center">Thế giới di động</h1>
+        <h1 class="text-primary text-center mb-5">Thế giới di động</h1>
+        <div className="mb-3 ">
+          <a
+            type="button "
+            className="text-success text-end d-block fs-4"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            style={{
+              cursor: "pointer",
+              textDecoration: "none",
+            }}
+          >
+            Giỏ hàng
+            <span>{cart.length}</span>
+          </a>
+        </div>
         <ProductList
           products={products}
           onSelectedProduct={this.onSelectedProduct}
+          onAddToCart={this.onAddToCart}
         />
         <ProductDetail productDetail={selectedProduct} />
 
-        {/* Button to show Modal */}
-        <div>
-          {/* Button trigger modal */}
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            Launch demo modal
-          </button>
-          {/* Modal */}
-
-          <div
-            className="modal fade"
-            id="exampleModal"
-            tabIndex={-1}
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLabel">
-                    Modal title
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  />
-                </div>
-                <div className="modal-body">...</div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" className="btn btn-primary">
-                    Save changes
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Modal
+          cart={cart}
+          onPlusCartItem={this.onPlusCartItem}
+          onMinusCartItem={this.onMinusCartItem}
+          onChangeAmountCartItem={this.onChangeAmountCartItem}
+        />
       </div>
     );
   }
