@@ -1,0 +1,16 @@
+.ingredient-amount {
+    margin: 0 8px;
+    background-color: var(--bg-color-dark);
+    color: var(--white-color);
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    text-align: center;
+    display: inline-block;
+}
+
+.burger-menu__main table thead {
+    background-color: var(--bg-color-dark);
+    color: var(--white-color);
+    border-radius: 8px;
+}

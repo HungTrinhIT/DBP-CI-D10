@@ -1,0 +1,16 @@
+.custom-btn {
+    border: none;
+    outline: none;
+    padding: 6px 8px;
+    border-radius: 4px;
+    color: var(--white-color);
+    transition: all .3s;
+}
+
+.custom-btn:focus {
+    outline: none;
+}
+
+.custom-btn:hover {
+    transform: scale(1.1);
+}
