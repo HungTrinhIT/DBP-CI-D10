@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 export default class StudentTable extends Component {
   render() {
+    // Destructering mảng students
+    const { students } = this.props;
     return (
       <div>
         <table className="table">
@@ -14,12 +16,21 @@ export default class StudentTable extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Hùng</td>
-              <td>23123</td>
-              <td>Msakdisadd@gmai;.clom</td>
-            </tr>
+            {students.length > 0 ? (
+              students.map((studentItem, index) => {
+                const { email, fullname, phoneNumber, id } = studentItem;
+                return (
+                  <tr key={index}>
+                    <td>{id}</td>
+                    <td>{fullname}</td>
+                    <td>{phoneNumber}</td>
+                    <td>{email}</td>
+                  </tr>
+                );
+              })
+            ) : (
+              <p>Chưa có học sinh nào , vui lòng thêm học sinh!</p>
+            )}
           </tbody>
         </table>
       </div>
