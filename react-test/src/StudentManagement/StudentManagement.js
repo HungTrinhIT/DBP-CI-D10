@@ -16,7 +16,7 @@ export default class StudentManagement extends Component {
   render() {
     return (
       <div className="container">
-        <h1 classNamem="text-center text-primary display-3">
+        <h1 className="text-center text-primary display-3">
           Quản lý sinh viên
         </h1>
         <StudentForm onAddStudent={this.onAddStudent} />
