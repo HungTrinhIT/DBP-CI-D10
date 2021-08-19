@@ -31,7 +31,7 @@ export default class Cart extends Component {
                 />
               </div>
               <div className="modal-body">
-                <table class="table">
+                <table className="table">
                   <thead>
                     <tr>
                       <th>Mã sản phẩm</th>
