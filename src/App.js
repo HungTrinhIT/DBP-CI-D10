@@ -40,3 +40,11 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+  App render => didMount render => counter render => did mount Counter
+  App Render => counter render => did counter => Did mount App (T)
+
+  Lifecycle
+
+*/

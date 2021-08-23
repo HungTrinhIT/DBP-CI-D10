@@ -21,7 +21,7 @@ class Counter extends Component {
     });
   };
 
-  // Shallow Comparison => So sanh object for...of key 
+  // Shallow Comparison => So sanh object for...of key
   /*
     loahad
     state: {
