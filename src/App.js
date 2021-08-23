@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
+import TodoApp from "./components/TodoApp/TodoApp";
 class App extends Component {
   render() {
-    console.log("App render");
-    return <div></div>;
+    return (
+      <div>
+        <TodoApp />
+      </div>
+    );
   }
 }
 
