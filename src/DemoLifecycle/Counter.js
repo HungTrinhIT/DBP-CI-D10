@@ -21,6 +21,19 @@ class Counter extends Component {
     });
   };
 
+  // Shallow Comparison => So sanh object for...of key 
+  /*
+    loahad
+    state: {
+        name: "hung",
+        age: 22,
+        info: {
+            address: "",
+            phoneNumber:"",
+            subInfo
+        }
+    }
+  */
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState.count !== this.state.count) {
       return true;
