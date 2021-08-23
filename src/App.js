@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-
 class App extends Component {
   render() {
-    return (
-      <div>
-        <p>AppJS here</p>
-      </div>
-    );
+    console.log("App render");
+    return <div></div>;
   }
 }
 
