@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+:root {
+    --main-bg: #1877f2;
+    --white-color: #ffffff;
+    --dark-color: #333333;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+a {
+    color: var(--white-color);
+}
+
+a:hover {
+    color: var(--white-color);
+
+}
