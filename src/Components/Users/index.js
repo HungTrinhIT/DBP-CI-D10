@@ -1,7 +1,12 @@
 import React from "react";
 import UserItem from "../UserItem";
+import Loading from "../../Layouts/Loading";
 const Users = (props) => {
-  const { users } = props;
+  const { users, isLoading } = props;
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="row">
       {users.map((userItem, index) => {

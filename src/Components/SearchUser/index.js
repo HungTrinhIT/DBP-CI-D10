@@ -17,9 +17,13 @@ class SearchUser extends Component {
   onSubmitSearchUser = (e) => {
     e.preventDefault();
     this.props.onFetchUser(this.state.search);
+    this.setState({
+      search: "",
+    });
   };
   render() {
     const { search } = this.state;
+    const { isShow, onClearUser } = this.props;
     return (
       <div className="search">
         <form onSubmit={this.onSubmitSearchUser}>
@@ -34,6 +38,14 @@ class SearchUser extends Component {
           <button type="submit" className="btn btn-primary search__btn">
             Search
           </button>
+          {isShow && (
+            <button
+              className="btn btn-secondary mt-2 search__btn"
+              onClick={() => onClearUser()}
+            >
+              Clear users
+            </button>
+          )}
         </form>
       </div>
     );

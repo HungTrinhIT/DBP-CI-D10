@@ -8,18 +8,23 @@ class Home extends Component {
     super(props);
     this.state = {
       users: [],
+      isShow: false,
+      isLoading: false,
     };
   }
 
-  // Cách 2
   onFetchUser = async (search) => {
     // Fetch User
+    this.setState({
+      isLoading: true,
+    });
     try {
-
       // const response =await axios.get(`${baseURL}/search/users?q=${search}`)
       const response = await UserAPI.fetchUser(search);
       this.setState({
         users: response.data.items,
+        isShow: true,
+        isLoading: false,
       });
     } catch (err) {
       console.log(err);
@@ -28,12 +33,22 @@ class Home extends Component {
     // Set State
   };
 
+  onClearUser = () => {
+    this.setState({
+      users: [],
+      isShow: false,
+    });
+  };
   render() {
-    const { users } = this.state;
+    const { users, isShow, isLoading } = this.state;
     return (
       <div>
-        <SearchUser onFetchUser={this.onFetchUser} />
-        <Users users={users} />
+        <SearchUser
+          onFetchUser={this.onFetchUser}
+          isShow={isShow}
+          onClearUser={this.onClearUser}
+        />
+        <Users users={users} isLoading={isLoading} />
       </div>
     );
   }
