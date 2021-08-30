@@ -6,7 +6,6 @@ const Users = (props) => {
   if (isLoading) {
     return <Loading />;
   }
-
   return (
     <div className="row">
       {users.map((userItem, index) => {

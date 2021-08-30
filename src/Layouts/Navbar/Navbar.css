@@ -25,3 +25,7 @@
     color: var(--white-color);
     margin-right: 16px
 }
+
+.nav-active {
+    text-decoration: underline;
+}

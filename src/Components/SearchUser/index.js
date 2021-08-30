@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from "../Button";
 import "./SearchUser.css";
 class SearchUser extends Component {
   constructor(props) {
@@ -35,16 +36,14 @@ class SearchUser extends Component {
             onChange={this.onSearchChange}
           />
 
-          <button type="submit" className="btn btn-primary search__btn">
-            Search
-          </button>
+          <Button label="Search" type="submit" color="primary" />
           {isShow && (
-            <button
-              className="btn btn-secondary mt-2 search__btn"
-              onClick={() => onClearUser()}
-            >
-              Clear users
-            </button>
+            <Button
+              label={1}
+              color="secondary"
+              type="button"
+              onClick={onClearUser}
+            />
           )}
         </form>
       </div>
