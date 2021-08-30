@@ -27,9 +27,10 @@ class Home extends Component {
 
   render() {
     const { users } = this.state;
+    const { history } = this.props;
     return (
       <div className="mt-3">
-        <Users users={users} />
+        <Users users={users} history={history} />
       </div>
     );
   }

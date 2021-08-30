@@ -1,12 +1,15 @@
 import React from "react";
 import "./UserItem.css";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const UserItem = (props) => {
-  const { login, avatar_url } = props.user;
-  const history = useHistory();
+  const { history, user } = props;
+  const { login, avatar_url } = user;
+  // const history = useHistory();
+
   const onLinkToUserDetail = () => {
     history.push(`/users/${login}`);
+    // console.log(history);
   };
 
   return (
@@ -20,4 +23,5 @@ const UserItem = (props) => {
     </div>
   );
 };
+UserItem.propTypes = {};
 export default UserItem;

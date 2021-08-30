@@ -54,6 +54,7 @@ class Search extends Component {
 
   render() {
     const { users, isLoading, isShowButtonClear, isShowAlert } = this.state;
+
     return (
       <div>
         {isShowAlert && (
@@ -67,7 +68,11 @@ class Search extends Component {
           isShowButtonClear={isShowButtonClear}
           onClearUsers={this.onClearUsers}
         />
-        <Users users={users} isLoading={isLoading} />
+        <Users
+          users={users}
+          isLoading={isLoading}
+          history={this.props.history}
+        />
       </div>
     );
   }

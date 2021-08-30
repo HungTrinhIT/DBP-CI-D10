@@ -29,7 +29,7 @@ class SearchUser extends Component {
       <div className="search">
         <form onSubmit={this.onSubmitSearchUser}>
           <input
-            name="search"
+            name="search" 
             placeholder="Enter username..."
             value={search}
             className="search__input"
