@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./SearchUser.css";
+import Button from "../Button";
 class SearchUser extends Component {
   constructor(props) {
     super(props);
@@ -17,9 +18,13 @@ class SearchUser extends Component {
   onSubmitSearchUser = (e) => {
     e.preventDefault();
     this.props.onFetchUser(this.state.search);
+    this.setState({
+      search: "",
+    });
   };
   render() {
     const { search } = this.state;
+    const { isShowButtonClear, onClearUsers } = this.props;
     return (
       <div className="search">
         <form onSubmit={this.onSubmitSearchUser}>
@@ -31,9 +36,15 @@ class SearchUser extends Component {
             onChange={this.onSearchChange}
           />
 
-          <button type="submit" className="btn btn-primary search__btn">
-            Search
-          </button>
+          <Button label="Submit" color="primary" type="submit" />
+
+          {isShowButtonClear && (
+            <Button
+              label="Clear users"
+              color="secondary"
+              onClick={onClearUsers}
+            />
+          )}
         </form>
       </div>
     );

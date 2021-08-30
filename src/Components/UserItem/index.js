@@ -10,7 +10,7 @@ const UserItem = (props) => {
   };
 
   return (
-    <div class="user col-12 col-md-6 col-lg-4">
+    <div className="user col-12 col-md-6 col-lg-4">
       <img src={avatar_url} alt="ïmg" className="user__avt" />
 
       <p className="user__name">{login}</p>

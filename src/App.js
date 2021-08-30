@@ -5,6 +5,7 @@ import Home from "./Containers/Home";
 import About from "./Containers/About";
 import Dashboard from "./Containers/UserDetail";
 import NavBar from "./Layouts/Navbar";
+import Search from "./Containers/Search";
 class App extends Component {
   render() {
     return (
@@ -13,6 +14,7 @@ class App extends Component {
         <div className="container">
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/search" component={Search} />
             <Route path="/about" component={About} />
             <Route path="/users/:login" component={Dashboard} />
           </Switch>
