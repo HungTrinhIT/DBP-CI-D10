@@ -44,3 +44,28 @@ console.log(validParentheses("("));
 
 // Problems 1.2
 // ([{}])[{((()))}]()[]{}
+
+function validParentheses_2(s) {
+  const mapping = {
+    "(": ")",
+    "{": "}",
+    "[": "]",
+  };
+
+  const st = [];
+  for (let i = 0; i < s.length; i++) {
+    const char = s[i];
+    if (char === "{" || char === "(" || char === "[") {
+      st.push(char);
+    } else {
+      if (mapping[st.pop()] !== char) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+console.log("\n1.2");
+console.log(validParentheses_2("([{}])[{((()))}]()[]{}"));
+console.log(validParentheses_2("([({})])([{}])((()))"));
+console.log(validParentheses_2("[][][][][]}}}}"));
