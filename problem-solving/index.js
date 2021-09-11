@@ -136,7 +136,7 @@ console.log(problem_3(25));
 // Output: -1
 
 function problem_4(s) {
-  const dict = {};
+  const dict = ;
 
   for (let i = 0; i < s.length; i++) {
     const char = s[i];
